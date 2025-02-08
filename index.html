@@ -4,12 +4,61 @@
  * @Description: 离线照片水印打码工具
 -->
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <title>离线照片水印打码工具</title>
+    <title>在线图片水印工具 | 免费离线照片水印制作 | Online Watermark Tool</title>
+    <meta name="description" content="免费的离线图片水印工具，支持批量添加文字水印，保护照片隐私安全。无需上传，本地处理，适用于证件、文档等敏感图片。Free offline watermark tool for photos and documents, supports batch processing with text watermarks, ensures privacy and security." />
+    <meta name="keywords" content="图片水印,照片水印,水印工具,离线水印,在线水印,watermark tool,photo watermark,offline watermark,online watermark,image watermark" />
+
+    <!-- Open Graph Meta 标签 -->
+    <meta property="og:title" content="专业的离线图片水印工具 | Professional Offline Watermark Tool" />
+    <meta property="og:description" content="完全免费的离线图片水印工具，无需上传即可为照片添加专业水印，保护您的图片安全。Free offline watermark tool that adds professional watermarks to your photos without uploading, protecting your image security." />
+    <meta property="og:image" content="https://watermark.cdtools.click/og-image.png" />
+    <meta property="og:url" content="https://watermark.cdtools.click" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Meta 标签 -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="离线图片水印工具 | Offline Watermark Tool" />
+    <meta name="twitter:description" content="安全可靠的离线图片水印工具，支持批量处理，保护隐私。Secure offline watermark tool supporting batch processing while protecting privacy." />
+
+    <!-- 其他重要 Meta 标签 -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="CDTools" />
+    <link rel="canonical" href="https://watermark.cdtools.click" />
+
+    <!-- 结构化数据 -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "离线图片水印工具",
+        "alternateName": "Offline Watermark Tool",
+        "url": "https://watermark.cdtools.click",
+        "description": "一款完全免费的离线图片水印工具，支持为照片、证件、文档等添加自定义水印，确保文件安全性。所有处理均在本地完成，无需担心隐私泄露。支持批量处理、多种字体样式、自定义位置等专业功能。A completely free offline watermark tool that supports adding custom watermarks to photos, documents, and credentials while ensuring file security. All processing is done locally without privacy concerns. Supports batch processing, multiple font styles, custom positioning, and other professional features.",
+        "applicationCategory": "图片处理工具",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        },
+        "featureList": ["完全离线处理，保护隐私安全", "支持批量添加水印", "多种字体和样式选择", "自定义水印位置和透明度", "适用于各类图片格式"]
+      }
+    </script>
+
+    <!-- 长篇 SEO 描述（隐藏显示）-->
+    <div style="display: none">
+      <h1>专业的离线图片水印工具 - Professional Offline Watermark Tool</h1>
+      <p>
+        欢迎使用我们的离线图片水印工具，这是一款完全免费且注重隐私保护的专业水印制作软件。我们的水印工具支持为照片、证件、文档等各类图片添加自定义水印，所有处理均在本地完成，无需担心隐私泄露问题。 我们的水印工具具有以下特点： 1. 完全离线处理：所有图片处理都在您的浏览器中完成，无需上传至服务器，确保文件安全性。 2. 批量处理功能：支持同时处理多张图片，提高工作效率。 3. 专业的水印选项：支持自定义字体、大小、颜色、透明度、旋转角度等。 4. 多种布局方式：支持平铺模式、单个水印、自定义数量等多种排列方式。 5. 便捷的模板功能：内置多种常用水印模板，一键套用。 适用场景： - 证件复印件加水印 - 文档版权保护 - 照片版权声明 - 企业资料防泄露 - 办公文件标记 Welcome to our offline watermark tool, a completely free and privacy-focused professional watermark creation software. Our tool supports adding custom watermarks to various types of images including photos, credentials, and documents. All processing is completed locally without any privacy concerns. Key Features: 1. Completely Offline Processing: All
+        image processing is done in your browser without server uploads, ensuring file security. 2. Batch Processing: Support processing multiple images simultaneously for improved efficiency. 3. Professional Watermark Options: Customize fonts, size, color, opacity, rotation angle, and more. 4. Multiple Layout Options: Support tiled mode, single watermark, custom quantity, and various arrangements. 5. Convenient Templates: Built-in templates for common watermark needs. Use Cases: - Adding watermarks to credential copies - Document copyright protection - Photo copyright declaration - Enterprise information protection - Office document marking
+      </p>
+    </div>
+
     <link rel="stylesheet" href="css/styles.css" />
     <script src="./js/script.js" defer></script>
   </head>
@@ -145,6 +194,11 @@
           </div>
         </section>
 
+        <section class="preview-section">
+          <div id="graph" class="empty" role="grid" aria-label="图片预览区域">
+            <!-- 图片预览将在此动态生成 -->
+          </div>
+        </section>
         <section class="action-section">
           <div class="button-group" role="group" aria-label="图片操作">
             <button class="btn btn-primary" onclick="downloadAll()" aria-label="下载全部图片">
@@ -157,12 +211,6 @@
             </button>
           </div>
         </section>
-
-        <section class="preview-section">
-          <div id="graph" class="empty" role="grid" aria-label="图片预览区域">
-            <!-- 图片预览将在此动态生成 -->
-          </div>
-        </section>
       </div>
     </div>
   </div>
@@ -170,4 +218,5 @@
   <div id="previewModal">
     <img id="previewImage" alt="previewImage" />
   </div>
+  <script src="https://link.cdtools.click/link.js"></script>
 </html>
