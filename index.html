@@ -5,158 +5,169 @@
 -->
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1" />
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <title>离线照片水印打码工具</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css" />
     <script src="./js/script.js" defer></script>
-</head>
-<button class="theme-switch" onclick="toggleTheme()">
+  </head>
+
+  <button class="theme-switch" onclick="toggleTheme()">
     <span class="theme-icon">🌞</span>
     <span class="theme-text">切换主题</span>
-</button>
-<div id="container">
-    <h1>离线照片水印打码工具</h1>
-    <article>安全地为你的图片加水印，无任何网络请求，利用浏览器api实现水印，特别适合各种敏感证（身份证，驾照，护照等）。<a
-            href="https://github.com/cuijianzhuang/photo-watermark">Github地址，求 star</a></article>
+  </button>
 
-    <div class="align-center-box upload-area">
-        <label>第一步：选择图片上传</label>
-        <div class="upload-container">
-            <div class="upload-box drag-area">
-                <input type="file" id="image" autocomplete="off" multiple>
-                <div class="upload-hint">
-                    <i class="upload-icon">📁</i>
-                    <p>点击或拖拽图片到此处上传</p>
-                    <p class="upload-tip">支持 jpg、jpeg、png、gif、webp、bmp、ico 格式</p>
-                </div>
-            </div>
-            <div id="uploadProgress" class="upload-progress" style="display: none;">
-                <div class="progress-bar">
-                    <div class="progress-inner"></div>
-                </div>
-                <div class="progress-text">正在处理图片...</div>
-            </div>
+  <div id="container">
+    <h1>完全离线的图片水印工具</h1>
+    <article class="description">
+      <ul>
+        <li>✓ 100% 本地运行，无网络请求</li>
+        <li>✓ 适用于证件、文档等敏感图片</li>
+        <li>✓ 使用浏览器原生 API，安全可靠</li>
+      </ul>
+    </article>
+
+    <div class="main-content">
+      <!-- 左侧水印设置 -->
+      <div class="watermark-settings">
+        <div class="align-center-box">
+          <label for="text">水印文字</label>
+          <input type="text" id="text" placeholder="请输入文字" value="版权所有 侵权必究" spellcheck="false" autocomplete="off" />
         </div>
-    </div>
-    <div class="align-center-box">
-        <label for="text">第二步：输入需要打水印的文字</label>
-        <input style="flex:1;margin-bottom:0" 
-               type="text" 
-               id="text" 
-               placeholder="请输入文字" 
-               value="版权所有 侵权必究"
-               spellcheck="false"
-               autocomplete="off">
-    </div>
-
-    <div class="align-center-box">
-        <label>水印布局设置</label>
-        <div style="flex:1;display:flex;flex-wrap:wrap;gap:20px;">
+        <div class="template-buttons">
+          <button class="template-btn" data-text="仅供办理XX使用，他用无效">办事模板</button>
+          <button class="template-btn" data-text="仅用于XX认证，他用无效">认证模板</button>
+          <button class="template-btn" data-text="复印件与原件相符">复印核验</button>
+          <button class="template-btn" data-text="该证件仅供XX查看，不得他用">证件模板</button>
+          <button class="template-btn" data-text="内部资料，请勿外传">内部资料</button>
+          <button class="template-btn" data-text="版权所有，严禁外传">版权声明</button>
+        </div>
+        <div class="align-center-box">
+          <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 20px">
             <div>
-                <label for="watermarkPattern">布局方式</label>
-                <select id="watermarkPattern" style="padding:8px;border-radius:4px;border:1px solid var(--border-color);background:var(--input-bg);color:var(--text-color);">
-                    <option value="tile">平铺模式</option>
-                    <option value="single">单个水印</option>
-                    <option value="custom">自定义数量</option>
-                </select>
+              <label for="watermarkPattern">布局方式</label>
+              <select id="watermarkPattern">
+                <option value="tile">平铺模式</option>
+                <option value="single">单个水印</option>
+                <option value="custom">自定义数量</option>
+              </select>
             </div>
-            
-            <div id="customPatternControls" style="display:none;">
-                <label for="watermarkCount">水印数量</label>
-                <input type="number" id="watermarkCount" min="1" max="100" value="1" style="width:80px;padding:8px;border-radius:4px;border:1px solid var(--border-color);background:var(--input-bg);color:var(--text-color);">
+
+            <div id="customPatternControls" style="display: none">
+              <label for="watermarkCount">水印数量</label>
+              <input type="number" id="watermarkCount" min="1" max="100" value="1" />
             </div>
-            
-            <div id="positionControls" style="display:none;">
-                <label for="watermarkPosition">位置</label>
-                <select id="watermarkPosition" style="padding:8px;border-radius:4px;border:1px solid var(--border-color);background:var(--input-bg);color:var(--text-color);">
-                    <option value="center">居中</option>
-                    <option value="top-left">左上角</option>
-                    <option value="top-right">右上角</option>
-                    <option value="bottom-left">左下角</option>
-                    <option value="bottom-right">右下角</option>
-                </select>
+
+            <div id="positionControls" style="display: none">
+              <label for="watermarkPosition">位置</label>
+              <select id="watermarkPosition">
+                <option value="center">居中</option>
+                <option value="top-left">左上角</option>
+                <option value="top-right">右上角</option>
+                <option value="bottom-left">左下角</option>
+                <option value="bottom-right">右下角</option>
+              </select>
             </div>
+          </div>
         </div>
-    </div>
 
-    <div class="align-center-box">
-        <label>字体与样式</label>
-        <div style="flex:1;display:flex;align-items:center;gap:10px">
-            <div class="font-select-wrapper" style="width:200px;position:relative">
-                <select id="fontFamily" style="width:100%;padding:8px 24px 8px 8px;border-radius:4px;border:1px solid var(--border-color);background:var(--input-bg);color:var(--text-color);appearance:none;cursor:pointer">
-                    <option value="黑体">黑体</option>
-                    <option value="宋体">宋体</option>
-                    <option value="仿宋">仿宋</option>
-                    <option value="楷体">楷体</option>
-                    <option value="隶书">隶书</option>
-                    <option value="幼圆">幼圆</option>
-                    <option value="Arial">Arial</option>
-                    <option value="Helvetica">Helvetica</option>
-                    <option value="Tahoma">Tahoma</option>
-                    <option value="Verdana">Verdana</option>
-                    <option value="Georgia">Georgia</option>
-                    <option value="TimesNewRoman">Times New Roman</option>
-                </select>
-                <span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--secondary-text)">▼</span>
+        <div class="align-center-box">
+          <label>字体与样式</label>
+          <div style="flex: 1; display: flex; align-items: center; gap: 10px">
+            <div class="font-select-wrapper" style="width: 200px; position: relative">
+              <select id="fontFamily">
+                <option value="黑体">黑体</option>
+                <option value="宋体">宋体</option>
+                <option value="仿宋">仿宋</option>
+                <option value="楷体">楷体</option>
+                <option value="隶书">隶书</option>
+                <option value="幼圆">幼圆</option>
+                <option value="Arial">Arial</option>
+                <option value="Helvetica">Helvetica</option>
+                <option value="Tahoma">Tahoma</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Georgia">Georgia</option>
+                <option value="TimesNewRoman">Times New Roman</option>
+              </select>
             </div>
-            
-            <div class="style-buttons" style="width:80px;display:flex;gap:1px;background:var(--border-color);border-radius:4px;padding:1px">
-                <button id="boldToggle" class="style-btn" onclick="toggleFontStyle('bold')" style="flex:1;font-weight:bold;border-radius:3px 0 0 3px">B</button>
-                <button id="italicToggle" class="style-btn" onclick="toggleFontStyle('italic')" style="flex:1;font-style:italic;border-radius:0 3px 3px 0">I</button>
+
+            <div class="style-buttons">
+              <button id="boldToggle" class="style-btn" onclick="toggleFontStyle('bold')">B</button>
+              <button id="italicToggle" class="style-btn" onclick="toggleFontStyle('italic')">I</button>
             </div>
-            
-            <div style="flex:1"></div>
+          </div>
         </div>
+
+        <div class="align-center-box">
+          <label for="color">颜色</label>
+          <input type="color" id="color" pattern="#[0-9A-Fa-f]{6}" value="#ffffff" />
+
+          <label for="alpha">不透明度</label>
+          <input type="range" id="alpha" min="0" max="1" step="0.05" value="0.3" />
+        </div>
+
+        <div class="align-center-box">
+          <label for="space">间隔</label>
+          <input type="range" id="space" min="1" max="8" step="0.2" value="1.5" />
+
+          <label for="size">字号</label>
+          <input type="range" id="size" min="0.5" max="3" step="0.05" value="0.8" />
+        </div>
+
+        <div class="align-center-box">
+          <label for="rotate">旋转角度</label>
+          <input type="range" id="rotate" min="-90" max="90" step="3" value="45" />
+          <span id="rotateValue">45°</span>
+        </div>
+      </div>
+
+      <!-- 右侧预览和下载 -->
+      <div class="preview-download">
+        <section class="upload-section">
+          <div class="upload-box">
+            <input type="file" id="image" autocomplete="off" multiple accept="image/*" aria-label="选择图片文件" />
+            <div class="upload-area" role="button" tabindex="0" aria-label="点击或拖拽图片到此处上传">
+              <div class="upload-hint">
+                <i class="upload-icon" aria-hidden="true">📁</i>
+                <p class="upload-title">点击或拖拽图片到此处上传</p>
+                <p class="upload-tip">支持 jpg、jpeg、png、gif、webp、bmp、ico 格式</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="uploadProgress" class="upload-progress" style="display: none" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="progress-bar">
+              <div class="progress-inner"></div>
+            </div>
+            <div class="progress-text">正在处理图片...</div>
+          </div>
+        </section>
+
+        <section class="action-section">
+          <div class="button-group" role="group" aria-label="图片操作">
+            <button class="btn btn-primary" onclick="downloadAll()" aria-label="下载全部图片">
+              <span class="btn-icon" aria-hidden="true">⬇️</span>
+              <span>下载全部</span>
+            </button>
+            <button class="btn btn-danger" onclick="deleteAll()" aria-label="删除全部图片">
+              <span class="btn-icon" aria-hidden="true">🗑️</span>
+              <span>删除全部</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="preview-section">
+          <div id="graph" class="empty" role="grid" aria-label="图片预览区域">
+            <!-- 图片预览将在此动态生成 -->
+          </div>
+        </section>
+      </div>
     </div>
+  </div>
 
-    <p class="align-center-box">
-
-        <label for="color">颜色</label>
-        <input style="flex:1;margin-right:30px" type="color" id="color" pattern="#[0-9A-Fa-f]{6}" autocomplete="off"
-            value="#ffffff"><br>
-
-        <label for="alpha">不透明度</label>
-        <input style="flex:1;margin-right:30px" type="range" id="alpha" min="0" max="1" step="0.05" autocomplete="off"
-            value="0.3"><br>
-
-        <label for="space">间隔</label>
-        <input style="flex:1;margin-right:30px" type="range" id="space" min="1" max="8" step="0.2" autocomplete="off"
-            value="1.5"><br>
-
-        <label for="size">字号</label>
-        <input style="flex:1;margin-right:30px" type="range" id="size" min="0.5" max="3" step="0.05" autocomplete="off"
-            value="0.8">
-
-        <label for="rotate">旋转角度</label>
-        <input style="flex:1;margin-right:30px" type="range" id="rotate" 
-               min="-90" max="90" step="3" 
-               autocomplete="off" value="45">
-        <span id="rotateValue">45°</span>
-    </p>
-
-    <label for="text">第三步：点击图片进行单个图片下载</label>
-    <div class="button-group">
-        <button class="btn btn-primary" onclick="downloadAll()">
-            <span class="btn-icon">⬇️</span>
-            <span>下载全部</span>
-        </button>
-        <button class="btn btn-danger" onclick="deleteAll()">
-            <span class="btn-icon">🗑️</span>
-            <span>删除全部</span>
-        </button>
-    </div>
-    <p id="graph"></p>
-    <footer style="text-align: center; margin-top: 30px; padding: 20px 0; color: #666; font-size: 14px; border-top: 1px solid #eee;">
-        <p>© 2024 离线照片水印打码工具 | 作者：<a href="https://github.com/cuijianzhuang" style="color: #3498db; text-decoration: none;">cuijianzhuang</a></p>
-        <p style="margin-top: 5px; font-size: 13px;">本工具完全离线运行，保护您的隐私安全</p>
-    </footer>
-</div>
-<div id="previewModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
-    <img id="previewImage" style="max-width:90%; max-height:90%; object-fit:contain; cursor:zoom-out;" alt="previewImage">
-</div>
-
+  <div id="previewModal">
+    <img id="previewImage" alt="previewImage" />
+  </div>
 </html>

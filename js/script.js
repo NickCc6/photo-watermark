@@ -39,8 +39,8 @@ const generateFileName = (fileName) => {
     d = new Date;
     const timeStr = '' + d.getFullYear() + '-' + (pad(d.getMonth() + 1)) + '-' + (pad(d
         .getDate())) + ' ' + (
-        pad(d
-            .getHours())) + (pad(d.getMinutes())) + (pad(d.getSeconds()))
+            pad(d
+                .getHours())) + (pad(d.getMinutes())) + (pad(d.getSeconds()))
     return fileName + '_' + timeStr + '.png';
 };
 const redrawCanvas = (canvas, img) => {
@@ -251,7 +251,7 @@ function toggleFontStyle(style) {
     btn.classList.toggle('active');
 
     // 更新所有画布
-    allCanvas.forEach(({canvas, img}) => {
+    allCanvas.forEach(({ canvas, img }) => {
         drawText(canvas, img);
     });
 }
@@ -606,9 +606,9 @@ inputItems.forEach(function (item) {
     configInputSetting[item] = el;
     return el.addEventListener('input', () => {
         allCanvas.forEach(({
-                               canvas,
-                               img
-                           }) => {
+            canvas,
+            img
+        }) => {
             drawText(canvas, img);
         });
     });
@@ -893,7 +893,7 @@ function downloadAll() {
                 return zip.generateAsync({
                     type: 'blob',
                     compression: 'DEFLATE',
-                    compressionOptions: {level: 6}
+                    compressionOptions: { level: 6 }
                 }, (metadata) => {
                     // 检查是否已取消
                     if (signal.aborted) {
@@ -1140,7 +1140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         positionControls.style.display = pattern === 'single' ? 'block' : 'none';
 
         // 更新所有画布
-        allCanvas.forEach(({canvas, img}) => {
+        allCanvas.forEach(({ canvas, img }) => {
             drawText(canvas, img);
         });
     });
@@ -1150,7 +1150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const element = document.getElementById(id);
         if (element) {
             element.addEventListener('change', () => {
-                allCanvas.forEach(({canvas, img}) => {
+                allCanvas.forEach(({ canvas, img }) => {
                     drawText(canvas, img);
                 });
             });
@@ -1216,7 +1216,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function copyImageToClipboard(canvas) {
     canvas.toBlob(blob => {
         try {
-            const item = new ClipboardItem({"image/png": blob});
+            const item = new ClipboardItem({ "image/png": blob });
             navigator.clipboard.write([item]).then(() => {
                 // 显示成功提示
                 showToast('图片已复制到剪贴板');
@@ -1322,7 +1322,7 @@ function showPreview(canvas, direction = null) {
                         const offscreen = new OffscreenCanvas(canvas.width, canvas.height);
                         const octx = offscreen.getContext('2d');
                         octx.drawImage(canvas, 0, 0);
-                        return offscreen.convertToBlob({type: 'image/jpeg', quality: 0.92});
+                        return offscreen.convertToBlob({ type: 'image/jpeg', quality: 0.92 });
                     } else {
                         return new Promise(resolve => {
                             canvas.toBlob(resolve, 'image/jpeg', 0.92);
@@ -1502,8 +1502,8 @@ class FileHandler {
  */
 class WatermarkUI {
     constructor() {
-        this.initElements();
-        this.bindEvents();
+        // this.initElements();
+        // this.bindEvents();
     }
 
     // ... 其他方法
@@ -1649,39 +1649,45 @@ deleteBtn.onclick = (e) => {
 
 // 添加键盘快捷键提示到页面上
 const shortcutsHtml = `
-    <div class="shortcuts-info" style="margin-top: 20px; color: var(--secondary-text); font-size: 14px;">
-        <p>键盘快捷键:</p>
-        <ul style="list-style: none; padding-left: 0; columns: 2;">
-            <li>⌘/Ctrl + D: 下载全部图片</li>
-            <li>⌘/Ctrl + V: 粘贴图片</li>
-            <li>Delete: 删除全部图片</li>
-            <li>⌘/Ctrl + Z: 撤销删除</li>
-            <li>Esc: 关闭预览</li>
-            <li>←/→: 预览时切换图片</li>
-            <li>1-9: 快速调整水印大小</li>
-        </ul>
+    <div class="shortcuts-info">
+        <div class="shortcuts-grid">
+            <div class="shortcut-item">
+                <kbd>⌘/Ctrl + D</kbd>
+                <span>下载全部</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>⌘/Ctrl + V</kbd>
+                <span>粘贴图片</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Delete</kbd>
+                <span>删除全部</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>⌘/Ctrl + Z</kbd>
+                <span>撤销删除</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>Esc</kbd>
+                <span>关闭预览</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>←/→</kbd>
+                <span>切换预览</span>
+            </div>
+            <div class="shortcut-item">
+                <kbd>1-9</kbd>
+                <span>调整大小</span>
+            </div>
+        </div>
     </div>
-    `;
+`;
 
 // 将快捷键说明添加到页面中
 document.querySelector('article').insertAdjacentHTML('afterend', shortcutsHtml);
 
-// 在 <input id="text"> 后面添加模板选择按钮组
-const textInput = document.querySelector('#text').parentElement;
-const templateHtml = `
-    <div class="template-buttons" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px;">
-        <button class="template-btn" data-text="仅供办理XX使用，他用无效">办事模板</button>
-        <button class="template-btn" data-text="仅用于XX认证，他用无效">认证模板</button>
-        <button class="template-btn" data-text="复印件与原件相符">复印核验</button>
-        <button class="template-btn" data-text="该证件仅供XX查看，不得他用">证件模板</button>
-        <button class="template-btn" data-text="内部资料，请勿外传">内部资料</button>
-        <button class="template-btn" data-text="版权所有，严禁外传">版权声明</button>
-    </div>
-    `;
 
-textInput.insertAdjacentHTML('beforeend', templateHtml);
 
-// 添加模板按钮点击事件
 document.querySelectorAll('.template-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const text = btn.dataset.text;
@@ -1695,26 +1701,26 @@ document.querySelectorAll('.template-btn').forEach(btn => {
     });
 });
 
-    // 尝试加载本地 jszip
-    function loadJSZip() {
+// 尝试加载本地 jszip
+function loadJSZip() {
     return new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = './js/jszip.min.js';
-    script.onload = resolve;
-    script.onerror = () => {
-    // 本地加载失败，尝试从 CDN 加载
-    const cdnScript = document.createElement('script');
-    cdnScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
-    cdnScript.onload = resolve;
-    cdnScript.onerror = reject;
-    document.head.appendChild(cdnScript);
-};
-    document.head.appendChild(script);
-});
+        const script = document.createElement('script');
+        script.src = './js/jszip.min.js';
+        script.onload = resolve;
+        script.onerror = () => {
+            // 本地加载失败，尝试从 CDN 加载
+            const cdnScript = document.createElement('script');
+            cdnScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+            cdnScript.onload = resolve;
+            cdnScript.onerror = reject;
+            document.head.appendChild(cdnScript);
+        };
+        document.head.appendChild(script);
+    });
 }
 
-    // 页面加载完成后加载 JSZip
-    document.addEventListener('DOMContentLoaded', () => {
+// 页面加载完成后加载 JSZip
+document.addEventListener('DOMContentLoaded', () => {
     loadJSZip().catch(err => {
         console.error('JSZip 加载失败:', err);
         alert('组件加载失败，部分功能可能无法使用。请检查网络连接后刷新页面重试。');
