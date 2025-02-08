@@ -766,10 +766,6 @@ article a:hover {
 
 /* 大屏幕优化 */
 @media (min-width: 1400px) {
-  #container {
-    max-width: 1800px;
-  }
-
   .main-content {
     grid-template-columns: minmax(350px, 1fr) minmax(600px, 2.5fr);
   }
@@ -785,10 +781,6 @@ article a:hover {
     --spacing-lg: 32px;
     --spacing-xl: 48px;
     --spacing-2xl: 64px;
-  }
-
-  #container {
-    max-width: 1800px;
   }
 
   #graph {
