@@ -1,9 +1,9 @@
-# 离线照片水印打码工具![](https://img.shields.io/github/stars/cuijianzhuang/photo-watermark.svg)
-
+# 离线照片水印打码工具
 
 一个纯前端实现的离线水印工具，可以安全地为图片添加水印，无需上传图片到服务器，特别适合处理敏感证件（身份证、驾照、护照等）。
 
-![img.png](snapshot/img.png)
+![kMUfvy](https://cdn.jsdelivr.net/gh/houxiaozhao/imageLibrary@master/uPic/2025/02/10/kMUfvy.png)
+
 ## 特性
 
 - 🔒 完全离线运行，保护隐私安全
@@ -49,10 +49,12 @@
 ## 水印布局模式
 
 ### 平铺模式
+
 - 水印均匀分布在整个图片上
 - 可调整间距和角度
 
 ### 单个水印
+
 - 支持五个固定位置：
   - 居中
   - 左上角
@@ -61,6 +63,7 @@
   - 右下角
 
 ### 自定义数量
+
 - 可设置具体水印数量
 - 自动计算最佳分布位置
 
@@ -89,11 +92,6 @@
 - Edge
 - Opera
 
-## 开发者
-
-- 作者：cuijianzhuang
-- GitHub：[https://github.com/cuijianzhuang](https://github.com/cuijianzhuang)
-
 ## 许可证
 
 MIT License
@@ -103,5 +101,5 @@ MIT License
 欢迎提交 Issue 和 Pull Request！
 
 ## 致谢
-本项目 fork 自 [jzsn2018](https://github.com/jzsn2018/offline-photo-watermark), 并在此基础上进行
-二次修改。感谢原作者[@joyqi](https://github.com/joyqi)
+
+本项目 fork 自 [jzsn2018](https://github.com/jzsn2018/offline-photo-watermark), 并在此基础上进行二次修改。感谢原作者[@joyqi](https://github.com/joyqi)
