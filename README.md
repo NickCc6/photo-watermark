@@ -94,7 +94,7 @@
 
 ## 许可证
 
-MIT License
+GPL-3.0 license
 
 ## 贡献
 
@@ -102,4 +102,4 @@ MIT License
 
 ## 致谢
 
-本项目 fork 自 [jzsn2018](https://github.com/jzsn2018/offline-photo-watermark), 并在此基础上进行二次修改。感谢原作者[@joyqi](https://github.com/joyqi)
+本项目 fork 自 [houxiaozhao](https://github.com/houxiaozhao/photo-watermark), 并在此基础上进行二次修改。感谢原作者[@joyqi](https://github.com/joyqi)
